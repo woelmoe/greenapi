@@ -1,5 +1,7 @@
+import type { IMessage } from '../../types'
+
 export interface IChat {
   chatId: string
-  phoneNumber: string
-  message: string
+  phone: string
+  messages: IMessage[]
 }
