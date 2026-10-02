@@ -11,7 +11,8 @@ import type { INotificationResponse } from '../types/notification'
 const BASE_URL = 'https://api.green-api.com'
 
 // мне пришлось замокать api, потому что вотсап постоянно отваливался
-const USE_MOCK = true
+// const USE_MOCK = true
+const USE_MOCK = false
 
 export async function checkAuth(
   id: string,
