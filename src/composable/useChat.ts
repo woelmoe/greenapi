@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import type { ICredentials, IMessage } from '../types'
 import type { IChat } from '../types/chats'
-import { deleteNotification, receiveNotification } from '../api/api'
+import {
+  deleteNotification,
+  getChatHistory,
+  receiveNotification
+} from '../api/api'
 import { usePolling } from './usePolling'
 import { toChatId } from '../utils/parsePhone'
 import type { INotificationResponse } from '../types/notification'
@@ -13,7 +17,10 @@ export function useChat(creds: ICredentials) {
   const [activeChatId, setActiveChatId] = useState<string>('')
 
   const setActiveChat = (chatId: string) => {
+    console.log('setActiveChat', chatId)
+
     setActiveChatId(chatId)
+    loadHistory(chatId)
   }
 
   const createChat = (phone: string) => {
@@ -29,7 +36,7 @@ export function useChat(creds: ICredentials) {
       ]
     })
 
-    setActiveChatId(chatId)
+    setActiveChat(chatId)
   }
 
   const addMessage = (chatId: string, message: IMessage) => {
@@ -68,7 +75,7 @@ export function useChat(creds: ICredentials) {
     return {
       id: body.idMessage ?? crypto.randomUUID(),
       text,
-      isOut: false,
+      isOutgoing: false,
       timestamp: (body.timestamp ?? Date.now() / 1000) * 1000,
       chatId
     }
@@ -90,12 +97,37 @@ export function useChat(creds: ICredentials) {
 
   const activeChat = chats.find((c) => c.chatId === activeChatId) ?? null
 
+  const loadHistory = async (chatId: string) => {
+    try {
+      const history = await getChatHistory(creds.id, creds.token, chatId)
+
+      const messages: IMessage[] = history
+        .filter((h) => h.typeMessage === 'textMessage' && h.textMessage)
+        .map((h) => ({
+          id: h.idMessage,
+          text: h.textMessage!,
+          isOutgoing: h.type === 'outgoing',
+          timestamp: h.timestamp * 1000,
+          chatId: h.chatId
+        }))
+
+      setChats((prev) =>
+        prev.map((chat) =>
+          chat.chatId === chatId ? { ...chat, messages } : chat
+        )
+      )
+    } catch (err) {
+      console.error('history error', err)
+    }
+  }
+
   return {
     chats,
     activeChatId,
     activeChat,
     createChat,
     setActiveChat,
-    addMessage
+    addMessage,
+    loadHistory
   }
 }

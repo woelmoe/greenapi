@@ -1,4 +1,4 @@
-import type { IMessageResponse, IStateInstanceResponse } from '../types'
+import { AuthState, type IMessageResponse } from '../types'
 import type { INotificationResponse } from '../types/notification'
 
 let notificationCounter = 1
@@ -21,10 +21,10 @@ function randomFrom<T>(arr: T[]): T {
 }
 
 export async function mockCheckAuth(): Promise<{
-  stateInstance: IStateInstanceResponse
+  stateInstance: AuthState
 }> {
   await new Promise((r) => setTimeout(r, 500))
-  const state: IStateInstanceResponse = 'authorized'
+  const state = AuthState.authorized
   return { stateInstance: state }
 }
 

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { IMessageResponse, IStateInstanceResponse } from '../types'
+import type { AuthState, IMessageResponse } from '../types'
 import {
   mockCheckAuth,
   mockSendMessage,
@@ -7,17 +7,21 @@ import {
   mockDeleteNotification
 } from './mockNotifications'
 import type { INotificationResponse } from '../types/notification'
+import type { IGetChatHistoryResponse } from '../types/history'
 
 const BASE_URL = 'https://api.green-api.com'
 
 // мне пришлось замокать api, потому что вотсап постоянно отваливался
+// ps: я понял в чем дело. нужно было включить в настройках пункт
+// Получать уведомления о входящих сообщениях и файлах
+
 // const USE_MOCK = true
 const USE_MOCK = false
 
 export async function checkAuth(
   id: string,
   token: string
-): Promise<{ stateInstance: IStateInstanceResponse }> {
+): Promise<{ stateInstance: AuthState }> {
   if (USE_MOCK) return mockCheckAuth()
 
   const url = `${BASE_URL}/waInstance${id}/getStateInstance/${token}`
@@ -60,4 +64,15 @@ export async function deleteNotification(
 
   const url = `${BASE_URL}/waInstance${instanceId}/deleteNotification/${token}/${receiptId}`
   await axios.delete(url)
+}
+
+export async function getChatHistory(
+  id: string,
+  token: string,
+  chatId: string,
+  count = 100
+): Promise<IGetChatHistoryResponse[]> {
+  const url = `${BASE_URL}/waInstance${id}/getChatHistory/${token}`
+  const { data } = await axios.post(url, { chatId, count })
+  return data
 }

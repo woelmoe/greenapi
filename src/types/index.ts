@@ -1,5 +1,6 @@
 export enum AuthState {
-  authorized = 'authorized'
+  authorized = 'authorized',
+  suspended = 'suspended'
 }
 
 export interface ICredentials {
@@ -10,18 +11,10 @@ export interface ICredentials {
 export interface IMessage {
   id: string
   text: string
-  isOut: boolean
+  isOutgoing: boolean
   timestamp: number
   chatId: string
 }
-
-export type IStateInstanceResponse =
-  | 'authorized'
-  | 'notAuthorized'
-  | 'blocked'
-  | 'starting'
-  | 'yellowCard'
-  | 'sleepMode'
 
 export interface IMessageResponse {
   idMessage: string

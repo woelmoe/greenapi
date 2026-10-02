@@ -33,7 +33,7 @@ function MessageInput({ chatId, creds, onMessageSent }: MessageInputProps) {
         chatId,
         id: response.idMessage,
         text: trimmed,
-        isOut: true,
+        isOutgoing: true,
         timestamp: Date.now()
       })
     } catch (err) {

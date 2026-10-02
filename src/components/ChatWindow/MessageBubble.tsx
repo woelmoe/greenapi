@@ -18,7 +18,7 @@ function MessageBubble({ message }: MessageBubbleProps) {
     <Box
       sx={{
         display: 'flex',
-        justifyContent: message.isOut ? 'flex-end' : 'flex-start',
+        justifyContent: message.isOutgoing ? 'flex-end' : 'flex-start',
         mb: 0.5
       }}
     >
@@ -28,7 +28,7 @@ function MessageBubble({ message }: MessageBubbleProps) {
           px: 1.5,
           py: 1,
           borderRadius: 2,
-          backgroundColor: message.isOut
+          backgroundColor: message.isOutgoing
             ? ThemeColors.outgoingBubble
             : ThemeColors.incomingBubble,
           color: ThemeColors.textPrimary,

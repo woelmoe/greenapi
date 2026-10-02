@@ -30,7 +30,10 @@ function LoginForm({ onLogin }: IProps) {
 
     try {
       const data = await checkAuth(idInstance, token)
-      if (data.stateInstance === AuthState.authorized) {
+      if (
+        data.stateInstance === AuthState.authorized ||
+        data.stateInstance === AuthState.suspended
+      ) {
         onLogin({
           id: idInstance,
           token

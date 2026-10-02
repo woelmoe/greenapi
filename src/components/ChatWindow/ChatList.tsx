@@ -247,7 +247,7 @@ function ChatList({
                       }}
                     >
                       {lastMessage
-                        ? `${lastMessage.isOut ? '✓ ' : ''}${lastMessage.text}`
+                        ? `${lastMessage.isOutgoing ? '✓ ' : ''}${lastMessage.text}`
                         : 'Нет сообщений'}
                     </Typography>
                   }
