@@ -51,9 +51,7 @@ module.exports = {
       {
         zones: [
           {
-            target: './src/synerget5-front-vue-electron-lib/**/*',
             from: ['./src'],
-            except: ['./synerget5-front-vue-electron-lib'],
             message: "You can't use this in a library"
           }
         ]
