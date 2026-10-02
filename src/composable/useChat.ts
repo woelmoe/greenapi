@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import type { ICredentials, IMessage, INotificationResponse } from '../types'
+import type { ICredentials, IMessage } from '../types'
 import type { IChat } from '../types/chats'
 import { deleteNotification, receiveNotification } from '../api/api'
 import { usePolling } from './usePolling'
 import { toChatId } from '../utils/parsePhone'
+import type { INotificationResponse } from '../types/notification'
 
 const INTER_POLL = 3000
 
@@ -75,6 +76,8 @@ export function useChat(creds: ICredentials) {
 
   const poll = async () => {
     const notification = await receiveNotification(creds.id, creds.token)
+    console.log(notification)
+
     if (!notification) return
 
     const message = toMessage(notification)

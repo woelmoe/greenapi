@@ -1,8 +1,5 @@
-import type {
-  IMessageResponse,
-  INotificationResponse,
-  IStateInstanceResponse
-} from '../types'
+import type { IMessageResponse, IStateInstanceResponse } from '../types'
+import type { INotificationResponse } from '../types/notification'
 
 let notificationCounter = 1
 
@@ -11,12 +8,12 @@ const phonePool = ['79999999999', '79123456789', '79001112233']
 const textPool = [
   'привет',
   'как дела?',
-  'что нового?',
-  'ок, договорились',
-  'во сколько встречаемся?',
+  'выавывыавыа',
+  'лывалдвыалдвыадвыадолв',
+  '123123123?',
   'спасибо!',
   'хорошо',
-  'позже напишу'
+  '1111111111111111111111111'
 ]
 
 function randomFrom<T>(arr: T[]): T {
@@ -52,6 +49,11 @@ export function mockReceiveNotification(): INotificationResponse | null {
     receiptId,
     body: {
       typeWebhook: 'incomingMessageReceived',
+      instanceData: {
+        idInstance: 0,
+        wid: '70000000000@c.us',
+        typeInstance: 'whatsapp'
+      },
       senderData: {
         chatId,
         sender: chatId

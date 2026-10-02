@@ -23,26 +23,6 @@ export type IStateInstanceResponse =
   | 'yellowCard'
   | 'sleepMode'
 
-export interface INotificationResponse {
-  receiptId: number
-  body: {
-    typeWebhook: string
-    senderData?: {
-      chatId: string
-      sender: string
-      senderName?: string
-    }
-    messageData?: {
-      typeMessage: string
-      textMessageData?: {
-        textMessage: string
-      }
-    }
-    idMessage?: string
-    timestamp?: number
-  } | null
-}
-
 export interface IMessageResponse {
   idMessage: string
 }

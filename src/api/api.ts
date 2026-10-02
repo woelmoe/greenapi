@@ -1,15 +1,12 @@
 import axios from 'axios'
-import type {
-  IMessageResponse,
-  INotificationResponse,
-  IStateInstanceResponse
-} from '../types'
+import type { IMessageResponse, IStateInstanceResponse } from '../types'
 import {
   mockCheckAuth,
   mockSendMessage,
   mockReceiveNotification,
   mockDeleteNotification
 } from './mockNotifications'
+import type { INotificationResponse } from '../types/notification'
 
 const BASE_URL = 'https://api.green-api.com'
 
