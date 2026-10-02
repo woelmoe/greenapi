@@ -1,31 +1,38 @@
 import { createTheme } from '@mui/material/styles'
 
 export const ThemeColors = {
-  primary: '#00a884',
-  primaryDark: '#008f72',
-  headerBg: '#202c33',
-  sidebarBg: '#111b21',
-  chatBg: '#0b141a',
-  incomingBubble: '#202c33',
-  outgoingBubble: '#005c4b',
-  textPrimary: '#e9edef',
-  textSecondary: '#8696a0',
-  border: '#2a3942',
-  hoverBg: '#202c33',
-  loginBg: '#111b21',
-  loginCardBg: '#202c33'
+  primary: '#57ac5a',
+  primaryDark: '#227826',
+  accent: '#00a884',
+
+  appBg: '#f0f2f5',
+  sidebarBg: '#ffffff',
+  chatBg: '#efeae2',
+  headerBg: '#f0f2f5',
+  cardBg: '#ffffff',
+
+  outgoingBubble: '#d9fdd3',
+  incomingBubble: '#ffffff',
+
+  textPrimary: '#111b21',
+  textSecondary: '#667781',
+  textMuted: '#8696a0',
+
+  border: '#e9edef',
+  hoverBg: '#f5f6f6',
+  selectedBg: '#f0f2f5'
 }
 
 export const theme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
       main: ThemeColors.primary,
       dark: ThemeColors.primaryDark
     },
     background: {
-      default: ThemeColors.chatBg,
-      paper: ThemeColors.sidebarBg
+      default: ThemeColors.appBg,
+      paper: ThemeColors.cardBg
     },
     text: {
       primary: ThemeColors.textPrimary,
@@ -44,15 +51,6 @@ export const theme = createTheme({
           textTransform: 'none',
           borderRadius: 8,
           fontWeight: 600
-        }
-      }
-    },
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          '& .MuiOutlinedInput-root': {
-            borderRadius: 8
-          }
         }
       }
     }

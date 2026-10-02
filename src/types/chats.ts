@@ -1,4 +1,4 @@
-import type { IMessage } from '../../types'
+import type { IMessage } from '.'
 
 export interface IChat {
   chatId: string

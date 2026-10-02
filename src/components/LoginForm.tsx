@@ -51,7 +51,7 @@ function LoginForm({ onLogin }: IProps) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: `linear-gradient(135deg, ${ThemeColors.headerBg} 0%, ${ThemeColors.primaryDark} 100%)`,
+        background: `linear-gradient(135deg, ${ThemeColors.primary} 0%, ${ThemeColors.primaryDark} 100%)`,
         p: 2
       }}
     >
@@ -61,7 +61,7 @@ function LoginForm({ onLogin }: IProps) {
           p: 4,
           width: '100%',
           maxWidth: 420,
-          backgroundColor: ThemeColors.loginCardBg,
+          backgroundColor: ThemeColors.outgoingBubble,
           borderRadius: 3
         }}
       >

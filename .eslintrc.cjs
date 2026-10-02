@@ -1,3 +1,4 @@
+// мой личный eslint
 module.exports = {
   root: true,
   env: {
